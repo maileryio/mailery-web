@@ -1,16 +1,18 @@
 {
-    "name": "maileryio/_____",
+    "name": "maileryio/mailery-web",
     "type": "library",
-    "description": "_____",
+    "description": "Mailery package for provide web components",
     "keywords": [
-        "_____"
+        "mail",
+        "mailer",
+        "web"
     ],
-    "homepage": "https://github.com/maileryio/_____",
+    "homepage": "https://github.com/maileryio/mailery-web",
     "license": "BSD-3-Clause",
     "support": {
-        "source": "https://github.com/maileryio/_____",
-        "issues": "https://github.com/maileryio/_____/issues",
-        "wiki": "https://github.com/maileryio/_____/wiki"
+        "source": "https://github.com/maileryio/mailery-web",
+        "issues": "https://github.com/maileryio/mailery-web/issues",
+        "wiki": "https://github.com/maileryio/mailery-web/wiki"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -24,12 +26,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Mailery\\_____\\": "src"
+            "Mailery\\Web\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Mailery\\_____\\Tests\\": "tests"
+            "Mailery\\Web\\Tests\\": "tests"
         }
     },
     "scripts": {
