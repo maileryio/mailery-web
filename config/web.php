@@ -30,6 +30,8 @@ use Yiisoft\Router\UrlMatcherInterface;
 use Yiisoft\Yii\Web\Emitter\EmitterInterface;
 use Yiisoft\Yii\Web\MiddlewareDispatcher;
 use Yiisoft\Yii\Web\ServerRequestFactory;
+use Yiisoft\Yii\Web\Session\Session;
+use Yiisoft\Yii\Web\Session\SessionInterface;
 
 return [
     // PSR-17 factories:
@@ -49,6 +51,13 @@ return [
     UrlMatcherInterface::class => Reference::to(RouterInterface::class),
     UrlGeneratorInterface::class => Reference::to(RouterInterface::class),
     MiddlewareDispatcher::class => new MiddlewareDispatcherFactory(),
+
+    SessionInterface::class => [
+        '__class' => Session::class,
+        '__construct()' => [
+            ['cookie_secure' => 0],
+        ],
+    ],
 
     RoutesProviderFactory::class => [
         '__class' => RoutesProviderFactory::class,
