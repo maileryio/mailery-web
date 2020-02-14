@@ -13,7 +13,6 @@ declare(strict_types=1);
 use Mailery\Web\Emitter\SapiEmitter;
 use Mailery\Web\Factory\AppRouterFactory;
 use Mailery\Web\Factory\MiddlewareDispatcherFactory;
-use Mailery\Web\Factory\RoutesProviderFactory;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\RequestFactoryInterface;
@@ -32,6 +31,8 @@ use Yiisoft\Yii\Web\MiddlewareDispatcher;
 use Yiisoft\Yii\Web\ServerRequestFactory;
 use Yiisoft\Yii\Web\Session\Session;
 use Yiisoft\Yii\Web\Session\SessionInterface;
+use Yiisoft\View\WebView;
+use Mailery\Web\Factory\ViewFactory;
 
 return [
     // PSR-17 factories:
@@ -59,7 +60,6 @@ return [
         ],
     ],
 
-    RoutesProviderFactory::class => [
-        '__class' => RoutesProviderFactory::class,
-    ],
+    // view
+    WebView::class => new ViewFactory(),
 ];
