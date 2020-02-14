@@ -41,7 +41,7 @@ class ViewFactory
 //            'user' => $container->get(User::class)->getIdentity(),
             'assetManager' => $container->get(AssetManager::class),
             'urlGenerator' => $container->get(UrlGeneratorInterface::class),
-//            'sidebarMenu' => $container->get(SidebarMenuInterface::class),
+            'sidebarMenu' => $container->get(SidebarMenuInterface::class),
         ]);
 
         $webView->setTitle('Default');
