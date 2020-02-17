@@ -147,13 +147,15 @@ abstract class Controller implements ViewContextInterface
     /**
      * @param string $view
      * @param array $parameters
-     * @return string
+     * @return ResponseInterface
      */
-    protected function render(string $view, array $parameters = []): string
+    protected function render(string $view, array $parameters = []): ResponseInterface
     {
+        $response = $this->responseFactory->createResponse();
         $content = $this->view->render($view, $parameters, $this);
+        $response->getBody()->write($this->renderContent($content));
 
-        return $this->renderContent($content);
+        return $response;
     }
 
     /**
