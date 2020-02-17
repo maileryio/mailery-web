@@ -22,6 +22,8 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\UploadedFileFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
+use Yiisoft\Assets\AssetPublisher;
+use Yiisoft\Assets\AssetPublisherInterface;
 use Yiisoft\Factory\Definitions\Reference;
 use Yiisoft\Router\RouterInterface;
 use Yiisoft\Router\UrlGeneratorInterface;
@@ -59,6 +61,14 @@ return [
             ['cookie_secure' => 0],
         ],
     ],
+
+    AssetPublisherInterface::class => function (ContainerInterface $container) use($params) {
+        $publisher = $container->get(AssetPublisher::class);
+        $publisher->setForceCopy($params['assetManager']['publisher']['forceCopy']);
+        $publisher->setAppendTimestamp($params['assetManager']['publisher']['appendTimestamp']);
+
+        return $publisher;
+    },
 
     // view
     WebView::class => new ViewFactory(),
