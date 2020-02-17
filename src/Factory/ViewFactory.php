@@ -1,25 +1,34 @@
 <?php
 
+declare(strict_types=1);
+
+/**
+ * Mailery package for provide web components
+ * @link      https://github.com/maileryio/mailery-web
+ * @package   Mailery\Web
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2020, Mailery (https://mailery.io/)
+ */
+
 namespace Mailery\Web\Factory;
 
-use Mailery\Web\View\WebView;
-use Amlsoft\Web\Enum\SettingKey;
 use Amlsoft\Settings\Service\SettingRegistryInterface;
+use Amlsoft\Web\Enum\SettingKey;
 use Mailery\Menu\Sidebar\SidebarMenuInterface;
+use Mailery\Web\View\WebView;
 use Psr\Container\ContainerInterface;
 use Psr\EventDispatcher\EventDispatcherInterface;
-use Psr\Log\LoggerInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Log\LoggerInterface;
 use Yiisoft\Aliases\Aliases;
 use Yiisoft\Assets\AssetManager;
-use Yiisoft\View\Theme;
 use Yiisoft\Router\UrlGeneratorInterface;
-use Yiisoft\Yii\Web\User\User;
+use Yiisoft\View\Theme;
 use Yiisoft\Widget\WidgetFactory;
+use Yiisoft\Yii\Web\User\User;
 
 class ViewFactory
 {
-
     /**
      * @param ContainerInterface $container
      * @return WebView
@@ -54,5 +63,4 @@ class ViewFactory
 
         return $webView;
     }
-
 }

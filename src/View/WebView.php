@@ -1,12 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
+/**
+ * Mailery package for provide web components
+ * @link      https://github.com/maileryio/mailery-web
+ * @package   Mailery\Web
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2020, Mailery (https://mailery.io/)
+ */
+
 namespace Mailery\Web\View;
 
 use Yiisoft\View\WebView as YiiWebView;
 
 class WebView extends YiiWebView
 {
-
     /**
      * @var string
      */
@@ -63,7 +72,7 @@ class WebView extends YiiWebView
     }
 
     /**
-     * @param string|array $breadcrumb
+     * @param array|string $breadcrumb
      */
     public function addBreadcrumb($breadcrumb)
     {
@@ -81,5 +90,4 @@ class WebView extends YiiWebView
     {
         return $this->breadcrumbs;
     }
-
 }

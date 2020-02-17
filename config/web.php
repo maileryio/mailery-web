@@ -13,6 +13,7 @@ declare(strict_types=1);
 use Mailery\Web\Emitter\SapiEmitter;
 use Mailery\Web\Factory\AppRouterFactory;
 use Mailery\Web\Factory\MiddlewareDispatcherFactory;
+use Mailery\Web\Factory\ViewFactory;
 use Nyholm\Psr7\Factory\Psr17Factory;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\RequestFactoryInterface;
@@ -24,17 +25,17 @@ use Psr\Http\Message\UploadedFileFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
 use Yiisoft\Assets\AssetPublisher;
 use Yiisoft\Assets\AssetPublisherInterface;
-use Yiisoft\Factory\Definitions\Reference;
-use Yiisoft\Router\RouterInterface;
+use Yiisoft\Router\FastRoute\UrlGenerator;
+use Yiisoft\Router\GroupFactory;
+use Yiisoft\Router\RouteCollectorInterface;
 use Yiisoft\Router\UrlGeneratorInterface;
 use Yiisoft\Router\UrlMatcherInterface;
+use Yiisoft\View\WebView;
 use Yiisoft\Yii\Web\Emitter\EmitterInterface;
 use Yiisoft\Yii\Web\MiddlewareDispatcher;
 use Yiisoft\Yii\Web\ServerRequestFactory;
 use Yiisoft\Yii\Web\Session\Session;
 use Yiisoft\Yii\Web\Session\SessionInterface;
-use Yiisoft\View\WebView;
-use Mailery\Web\Factory\ViewFactory;
 
 return [
     // PSR-17 factories:
@@ -50,11 +51,12 @@ return [
 
     // custom stuff
     EmitterInterface::class => SapiEmitter::class,
-    RouterInterface::class => new AppRouterFactory(),
-    UrlMatcherInterface::class => Reference::to(RouterInterface::class),
-    UrlGeneratorInterface::class => Reference::to(RouterInterface::class),
-    MiddlewareDispatcher::class => new MiddlewareDispatcherFactory(),
 
+    RouteCollectorInterface::class => new GroupFactory(),
+    UrlMatcherInterface::class => new AppRouterFactory(),
+    UrlGeneratorInterface::class => UrlGenerator::class,
+
+    MiddlewareDispatcher::class => new MiddlewareDispatcherFactory(),
     SessionInterface::class => [
         '__class' => Session::class,
         '__construct()' => [
@@ -62,7 +64,7 @@ return [
         ],
     ],
 
-    AssetPublisherInterface::class => function (ContainerInterface $container) use($params) {
+    AssetPublisherInterface::class => function (ContainerInterface $container) use ($params) {
         $publisher = $container->get(AssetPublisher::class);
         $publisher->setForceCopy($params['assetManager']['publisher']['forceCopy']);
         $publisher->setAppendTimestamp($params['assetManager']['publisher']['appendTimestamp']);

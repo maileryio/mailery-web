@@ -13,22 +13,21 @@ declare(strict_types=1);
 namespace Mailery\Web\Factory;
 
 use Psr\Container\ContainerInterface;
-use Yiisoft\Router\FastRoute\FastRouteFactory;
-use Yiisoft\Router\RouterFactory;
-use Yiisoft\Router\RouterInterface;
+use Yiisoft\Router\FastRoute\UrlMatcher;
+use Yiisoft\Router\RouteCollection;
+use Yiisoft\Router\RouteCollectorInterface;
+use Yiisoft\Router\UrlMatcherInterface;
 
 class AppRouterFactory
 {
     /**
      * @param ContainerInterface $container
-     * @return RouterInterface
+     * @return UrlMatcherInterface
      */
-    public function __invoke(ContainerInterface $container): RouterInterface
+    public function __invoke(ContainerInterface $container): UrlMatcherInterface
     {
-        /** @var RoutesProviderFactory $routesProvider */
-        $routesProvider = $container->get(RoutesProviderFactory::class);
-        $routes = $routesProvider($container);
+        $collector = $container->get(RouteCollectorInterface::class);
 
-        return (new RouterFactory(new FastRouteFactory(), $routes))($container);
+        return new UrlMatcher(new RouteCollection($collector));
     }
 }
