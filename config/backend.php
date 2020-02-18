@@ -53,16 +53,10 @@ return [
     EmitterInterface::class => SapiEmitter::class,
 
     RouteCollectorInterface::class => new GroupFactory(),
-    UrlMatcherInterface::class => new AppRouterFactory(),
+    UrlMatcherInterface::class => new AppRouterFactory($params['router']['routes']),
     UrlGeneratorInterface::class => UrlGenerator::class,
 
     MiddlewareDispatcher::class => new MiddlewareDispatcherFactory(),
-    SessionInterface::class => [
-        '__class' => Session::class,
-        '__construct()' => [
-            ['cookie_secure' => 0],
-        ],
-    ],
 
     AssetPublisherInterface::class => function (ContainerInterface $container) use ($params) {
         $publisher = $container->get(AssetPublisher::class);

@@ -22,17 +22,26 @@ use Yiisoft\Router\UrlMatcherInterface;
 class AppRouterFactory
 {
     /**
+     * @var array
+     */
+    private $routes;
+
+    /**
+     * @param array $routes
+     */
+    public function __construct(array $routes)
+    {
+        $this->routes = $routes;
+    }
+
+    /**
      * @param ContainerInterface $container
      * @return UrlMatcherInterface
      */
     public function __invoke(ContainerInterface $container): UrlMatcherInterface
     {
-        /** @var RoutesProviderFactory $routesProvider */
-        $routesProvider = $container->get(RoutesProviderFactory::class);
-        $routes = $routesProvider($container);
-
         $collector = $container->get(RouteCollectorInterface::class);
-        $collector->addGroup(Group::create(null, $routes));
+        $collector->addGroup(Group::create(null, $this->routes));
 
         return new UrlMatcher(new RouteCollection($collector));
     }

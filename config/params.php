@@ -17,4 +17,8 @@ return [
             'appendTimestamp' => true,
         ],
     ],
+
+    'router' => [
+        'routes' => [],
+    ],
 ];
