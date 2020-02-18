@@ -14,6 +14,7 @@ namespace Mailery\Web\Factory;
 
 use Psr\Container\ContainerInterface;
 use Yiisoft\Router\FastRoute\UrlMatcher;
+use Yiisoft\Router\Group;
 use Yiisoft\Router\RouteCollection;
 use Yiisoft\Router\RouteCollectorInterface;
 use Yiisoft\Router\UrlMatcherInterface;
@@ -26,7 +27,12 @@ class AppRouterFactory
      */
     public function __invoke(ContainerInterface $container): UrlMatcherInterface
     {
+        /** @var RoutesProviderFactory $routesProvider */
+        $routesProvider = $container->get(RoutesProviderFactory::class);
+        $routes = $routesProvider($container);
+
         $collector = $container->get(RouteCollectorInterface::class);
+        $collector->addGroup(Group::create(null, $routes));
 
         return new UrlMatcher(new RouteCollection($collector));
     }
