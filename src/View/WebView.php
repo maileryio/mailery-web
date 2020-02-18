@@ -27,18 +27,6 @@ class WebView extends YiiWebView
     private string $encoding;
 
     /**
-     * @var array
-     */
-    private array $breadcrumbs = [];
-
-    /**
-     * @return void
-     */
-    public function registerCsrfMetaTags(): void
-    {
-    }
-
-    /**
      * @param string $language
      * @return void
      */
@@ -71,23 +59,4 @@ class WebView extends YiiWebView
         return $this->encoding;
     }
 
-    /**
-     * @param array|string $breadcrumb
-     */
-    public function addBreadcrumb($breadcrumb)
-    {
-        if (is_string($breadcrumb)) {
-            $this->breadcrumbs['label'] = $breadcrumb;
-        } else {
-            $this->breadcrumbs[] = $breadcrumb;
-        }
-    }
-
-    /**
-     * @return string
-     */
-    public function getBreadcrumbs(): array
-    {
-        return $this->breadcrumbs;
-    }
 }

@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace Mailery\Web;
 
 use Psr\Http\Message\ResponseFactoryInterface;
+use Psr\Http\Message\ResponseInterface;
 use Yiisoft\Aliases\Aliases;
 use Yiisoft\View\ViewContextInterface;
 use Yiisoft\View\WebView;
