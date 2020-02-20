@@ -21,7 +21,11 @@ use Yiisoft\Yii\Web\Session\SessionMiddleware;
 
 class MiddlewareDispatcherFactory
 {
-    public function __invoke(ContainerInterface $container)
+    /**
+     * @param ContainerInterface $container
+     * @return MiddlewareDispatcher
+     */
+    public function __invoke(ContainerInterface $container): MiddlewareDispatcher
     {
         $session = $container->get(SessionMiddleware::class);
         $router = $container->get(Router::class);

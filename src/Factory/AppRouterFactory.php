@@ -24,7 +24,7 @@ class AppRouterFactory
     /**
      * @var array
      */
-    private $routes;
+    private array $routes;
 
     /**
      * @param array $routes

@@ -23,37 +23,32 @@ abstract class Controller implements ViewContextInterface
     /**
      * @var Aliases
      */
-    private $aliases;
+    private Aliases $aliases;
 
     /**
      * @var WebView
      */
-    private $view;
+    private WebView $view;
 
     /**
      * @var string
      */
-    private $layout = 'main';
-
-    /**
-     * @var string|null
-     */
-    private $viewPath;
+    private string $layout = 'main';
 
     /**
      * @var string
      */
-    private $baseViewPath = '@views';
+    private string $baseViewPath = '@views';
 
     /**
      * @var string
      */
-    private $baseLayoutPath = '@views/layout';
+    private string $baseLayoutPath = '@views/layout';
 
     /**
      * @var ResponseFactoryInterface
      */
-    private $responseFactory;
+    private ResponseFactoryInterface $responseFactory;
 
     /**
      * @param ResponseFactoryInterface $responseFactory
@@ -73,8 +68,15 @@ abstract class Controller implements ViewContextInterface
     public function getId(): string
     {
         $shortName = (new \ReflectionClass($this))->getShortName();
-
         return strtolower(preg_replace('/Controller$/', '', $shortName));
+    }
+
+    /**
+     * @return string
+     */
+    public function getViewPath(): string
+    {
+        return $this->getBaseViewPath() . '/' . $this->getId();
     }
 
     /**
@@ -82,7 +84,7 @@ abstract class Controller implements ViewContextInterface
      */
     public function getLayout(): string
     {
-        return $this->getBaseLayoutPath() . '/' . $this->layout;
+        return $this->layout;
     }
 
     /**
@@ -91,26 +93,6 @@ abstract class Controller implements ViewContextInterface
     public function setLayout(string $layout): string
     {
         return $this->layout = $layout;
-    }
-
-    /**
-     * @return string
-     */
-    public function getViewPath(): string
-    {
-        if ($this->viewPath !== null) {
-            return $this->viewPath;
-        }
-
-        return $this->getBaseViewPath() . '/' . $this->getId();
-    }
-
-    /**
-     * @param string $viewPath
-     */
-    public function setViewPath(string $viewPath): string
-    {
-        return $this->viewPath = $viewPath;
     }
 
     /**
@@ -146,13 +128,21 @@ abstract class Controller implements ViewContextInterface
     }
 
     /**
+     * @return ResponseFactoryInterface
+     */
+    public function getResponseFactory(): ResponseFactoryInterface
+    {
+        return $this->responseFactory;
+    }
+
+    /**
      * @param string $view
      * @param array $parameters
      * @return ResponseInterface
      */
     protected function render(string $view, array $parameters = []): ResponseInterface
     {
-        $response = $this->responseFactory->createResponse();
+        $response = $this->getResponseFactory()->createResponse();
         $content = $this->view->render($view, $parameters, $this);
         $response->getBody()->write($this->renderContent($content));
 
@@ -160,11 +150,15 @@ abstract class Controller implements ViewContextInterface
     }
 
     /**
-     * @return ResponseFactoryInterface
+     * @param string $url
+     * @param int $status
+     * @return ResponseInterface
      */
-    protected function getResponseFactory(): ResponseFactoryInterface
+    protected function redirect(string $url, int $status = 302): ResponseInterface
     {
-        return $this->responseFactory;
+        return $this->getResponseFactory()->createResponse()
+            ->withStatus($status)
+            ->withHeader('Location', $url);
     }
 
     /**
@@ -173,7 +167,7 @@ abstract class Controller implements ViewContextInterface
      */
     private function renderContent(string $content): string
     {
-        $layout = $this->findLayoutFile($this->getLayout());
+        $layout = $this->findLayoutFile($this->getBaseLayoutPath() . '/' . $this->getLayout());
         if ($layout !== null) {
             return $this->view->renderFile(
                 $layout,
