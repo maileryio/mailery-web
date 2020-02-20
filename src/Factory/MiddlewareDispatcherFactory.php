@@ -32,11 +32,10 @@ class MiddlewareDispatcherFactory
         $errorCatcher = $container->get(ErrorCatcher::class);
         $subFolder = $container->get(SubFolder::class);
 
-        return new MiddlewareDispatcher([
-            $errorCatcher,
-            $session,
-            $subFolder,
-            $router,
-        ], $container);
+        return (new MiddlewareDispatcher($container))
+            ->addMiddleware($router)
+            ->addMiddleware($subFolder)
+            ->addMiddleware($session)
+            ->addMiddleware($errorCatcher);
     }
 }
