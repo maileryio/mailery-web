@@ -34,8 +34,9 @@ use Yiisoft\View\WebView;
 use Yiisoft\Yii\Web\Emitter\EmitterInterface;
 use Yiisoft\Yii\Web\MiddlewareDispatcher;
 use Yiisoft\Yii\Web\ServerRequestFactory;
-use Yiisoft\Yii\Web\Session\Session;
-use Yiisoft\Yii\Web\Session\SessionInterface;
+use Psr\Log\LoggerInterface;
+use Yiisoft\Assets\AssetConverterInterface;
+use Yiisoft\Assets\AssetManager;
 
 return [
     // PSR-17 factories:
@@ -58,12 +59,22 @@ return [
 
     MiddlewareDispatcher::class => new MiddlewareDispatcherFactory(),
 
-    AssetPublisherInterface::class => function (ContainerInterface $container) use ($params) {
+    AssetPublisherInterface::class => function (ContainerInterface $container) use($params) {
         $publisher = $container->get(AssetPublisher::class);
         $publisher->setForceCopy($params['assetManager']['publisher']['forceCopy']);
         $publisher->setAppendTimestamp($params['assetManager']['publisher']['appendTimestamp']);
 
         return $publisher;
+    },
+
+    AssetManager::class => function (ContainerInterface $container) use($params) {
+        $assetManager = new AssetManager($container->get(LoggerInterface::class));
+
+        $assetManager->setBundles($params['assetManager']['bundles']);
+        $assetManager->setConverter($container->get(AssetConverterInterface::class));
+        $assetManager->setPublisher($container->get(AssetPublisherInterface::class));
+
+        return $assetManager;
     },
 
     // view

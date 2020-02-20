@@ -10,8 +10,22 @@ declare(strict_types=1);
  * @copyright Copyright (c) 2020, Mailery (https://mailery.io/)
  */
 
+use Mailery\Web\Assets\AppAssetBundle;
+use Mailery\Web\Assets\VueAssetBundle;
+use Mailery\Web\Assets\VuexAssetBundle;
+use Mailery\Web\Assets\BootstrapVueAssetBundle;
+
 return [
     'assetManager' => [
+        'bundles' => [
+            AppAssetBundle::class => [
+                'depends' => [
+                    VueAssetBundle::class,
+                    VuexAssetBundle::class,
+                    BootstrapVueAssetBundle::class,
+                ],
+            ],
+        ],
         'publisher' => [
             'forceCopy' => false,
             'appendTimestamp' => true,
