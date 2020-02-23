@@ -14,6 +14,7 @@ namespace Mailery\Web\Factory;
 
 use Amlsoft\Settings\Service\SettingRegistryInterface;
 use Amlsoft\Web\Enum\SettingKey;
+use Mailery\Menu\Navbar\NavbarMenuInterface;
 use Mailery\Menu\Sidebar\SidebarMenuInterface;
 use Mailery\Web\View\WebView;
 use Psr\Container\ContainerInterface;
@@ -50,6 +51,7 @@ class ViewFactory
 //            'user' => $container->get(User::class)->getIdentity(),
             'assetManager' => $container->get(AssetManager::class),
             'urlGenerator' => $container->get(UrlGeneratorInterface::class),
+            'navbarMenu' => $container->get(NavbarMenuInterface::class),
             'sidebarMenu' => $container->get(SidebarMenuInterface::class),
         ]);
 

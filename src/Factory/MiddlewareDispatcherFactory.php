@@ -22,6 +22,19 @@ use Yiisoft\Yii\Web\Session\SessionMiddleware;
 class MiddlewareDispatcherFactory
 {
     /**
+     * @var array
+     */
+    private array $middlewares;
+
+    /**
+     * @param array $middlewares
+     */
+    public function __construct(array $middlewares)
+    {
+        $this->middlewares = $middlewares;
+    }
+
+    /**
      * @param ContainerInterface $container
      * @return MiddlewareDispatcher
      */
@@ -32,10 +45,18 @@ class MiddlewareDispatcherFactory
         $errorCatcher = $container->get(ErrorCatcher::class);
         $subFolder = $container->get(SubFolder::class);
 
-        return (new MiddlewareDispatcher($container))
+        $dispatcher = (new MiddlewareDispatcher($container))
             ->addMiddleware($router)
             ->addMiddleware($subFolder)
             ->addMiddleware($session)
-            ->addMiddleware($errorCatcher);
+        ;
+
+        foreach ($this->middlewares as $middleware) {
+            $dispatcher->addMiddleware($container->get($middleware));
+        }
+
+        $dispatcher->addMiddleware($errorCatcher);
+
+        return $dispatcher;
     }
 }

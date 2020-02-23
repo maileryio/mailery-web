@@ -35,4 +35,8 @@ return [
     'router' => [
         'routes' => [],
     ],
+
+    'dispatcher' => [
+        'middlewares' => [],
+    ],
 ];

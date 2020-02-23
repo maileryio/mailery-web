@@ -57,7 +57,7 @@ return [
     UrlMatcherInterface::class => new AppRouterFactory($params['router']['routes']),
     UrlGeneratorInterface::class => UrlGenerator::class,
 
-    MiddlewareDispatcher::class => new MiddlewareDispatcherFactory(),
+    MiddlewareDispatcher::class => new MiddlewareDispatcherFactory($params['dispatcher']['middlewares']),
 
     AssetPublisherInterface::class => function (ContainerInterface $container) use($params) {
         $publisher = $container->get(AssetPublisher::class);
