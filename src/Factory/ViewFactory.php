@@ -12,8 +12,7 @@ declare(strict_types=1);
 
 namespace Mailery\Web\Factory;
 
-use Amlsoft\Settings\Service\SettingRegistryInterface;
-use Amlsoft\Web\Enum\SettingKey;
+use Mailery\Brand\Service\BrandLocator;
 use Mailery\Menu\Navbar\NavbarMenuInterface;
 use Mailery\Menu\Sidebar\SidebarMenuInterface;
 use Mailery\Web\View\WebView;
@@ -27,6 +26,7 @@ use Yiisoft\Router\UrlGeneratorInterface;
 use Yiisoft\View\Theme;
 use Yiisoft\Widget\WidgetFactory;
 use Yiisoft\Yii\Web\User\User;
+use Yiisoft\I18n\TranslatorInterface;
 
 class ViewFactory
 {
@@ -48,11 +48,13 @@ class ViewFactory
         $webView->setDefaultParameters([
             'aliases' => $aliases,
             'request' => $container->get(ServerRequestInterface::class),
+            'translator' => $container->get(TranslatorInterface::class),
 //            'user' => $container->get(User::class)->getIdentity(),
             'assetManager' => $container->get(AssetManager::class),
             'urlGenerator' => $container->get(UrlGeneratorInterface::class),
             'navbarMenu' => $container->get(NavbarMenuInterface::class),
             'sidebarMenu' => $container->get(SidebarMenuInterface::class),
+            'brandLocator' => $container->get(BrandLocator::class),
         ]);
 
         $webView->setTitle('Default');
