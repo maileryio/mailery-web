@@ -10,12 +10,12 @@ class AppAssetBundle extends AssetBundle
     /**
      * {@inheritdoc}
      */
-    public ?string $basePath = '@public/assets';
+    public ?string $basePath = '@public/assets/@maileryio/mailery-assets';
 
     /**
      * {@inheritdoc}
      */
-    public ?string $baseUrl = '@web';
+    public ?string $baseUrl = '@web/@maileryio/mailery-assets';
 
     /**
      * {@inheritdoc}
