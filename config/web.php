@@ -10,7 +10,6 @@ declare(strict_types=1);
  * @copyright Copyright (c) 2020, Mailery (https://mailery.io/)
  */
 
-use Mailery\Web\Emitter\SapiEmitter;
 use Mailery\Web\Factory\AppRouterFactory;
 use Mailery\Web\Factory\MiddlewareDispatcherFactory;
 use Mailery\Web\Factory\ViewFactory;
@@ -31,7 +30,6 @@ use Yiisoft\Router\RouteCollectorInterface;
 use Yiisoft\Router\UrlGeneratorInterface;
 use Yiisoft\Router\UrlMatcherInterface;
 use Yiisoft\View\WebView;
-use Yiisoft\Yii\Web\Emitter\EmitterInterface;
 use Yiisoft\Yii\Web\MiddlewareDispatcher;
 use Yiisoft\Yii\Web\ServerRequestFactory;
 use Psr\Log\LoggerInterface;
@@ -50,14 +48,15 @@ return [
         return $container->get(ServerRequestFactory::class)->createFromGlobals();
     },
 
-    // custom stuff
-    EmitterInterface::class => SapiEmitter::class,
-
+    // Router:
     RouteCollectorInterface::class => new GroupFactory(),
     UrlMatcherInterface::class => new AppRouterFactory($params['router']['routes']),
     UrlGeneratorInterface::class => UrlGenerator::class,
 
     MiddlewareDispatcher::class => new MiddlewareDispatcherFactory($params['dispatcher']['middlewares']),
+
+    // View:
+    WebView::class => new ViewFactory(),
 
     AssetPublisherInterface::class => function (ContainerInterface $container) use($params) {
         $publisher = $container->get(AssetPublisher::class);
@@ -76,7 +75,4 @@ return [
 
         return $assetManager;
     },
-
-    // view
-    WebView::class => new ViewFactory(),
 ];

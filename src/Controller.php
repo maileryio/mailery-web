@@ -162,6 +162,21 @@ abstract class Controller implements ViewContextInterface
     }
 
     /**
+     * @param array $data
+     * @return ResponseInterface
+     */
+    protected function asJson(array $data = []): ResponseInterface
+    {
+        $response = $this->getResponseFactory()
+            ->createResponse()
+            ->withHeader('Content-Type', 'application/json');
+
+        $response->getBody()->write(json_encode($data));
+
+        return $response;
+    }
+
+    /**
      * @param string $content
      * @return string
      */
