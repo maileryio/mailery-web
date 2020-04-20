@@ -49,7 +49,7 @@ class ViewFactory
             'aliases' => $aliases,
             'request' => $container->get(ServerRequestInterface::class),
             'translator' => $container->get(TranslatorInterface::class),
-//            'user' => $container->get(User::class)->getIdentity(),
+            'user' => $container->get(User::class)->getIdentity(),
             'assetManager' => $container->get(AssetManager::class),
             'urlGenerator' => $container->get(UrlGeneratorInterface::class),
             'navbarMenu' => $container->get(NavbarMenuInterface::class),
