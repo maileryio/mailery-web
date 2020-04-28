@@ -101,7 +101,7 @@ abstract class Controller implements ViewContextInterface
      */
     public function getBaseViewPath(): string
     {
-        return (string) $this->aliases->get($this->baseViewPath);
+        return $this->aliases->get($this->baseViewPath);
     }
 
     /**
@@ -117,7 +117,7 @@ abstract class Controller implements ViewContextInterface
      */
     public function getBaseLayoutPath(): string
     {
-        return (string) $this->aliases->get($this->baseLayoutPath);
+        return $this->aliases->get($this->baseLayoutPath);
     }
 
     /**
@@ -165,6 +165,7 @@ abstract class Controller implements ViewContextInterface
     /**
      * @param array $data
      * @return ResponseInterface
+     * @throws \RuntimeException
      */
     protected function asJson(array $data = []): ResponseInterface
     {
@@ -172,7 +173,11 @@ abstract class Controller implements ViewContextInterface
             ->createResponse()
             ->withHeader('Content-Type', 'application/json');
 
-        $response->getBody()->write(json_encode($data));
+        if (($json = json_encode($data)) === false) {
+            throw new \RuntimeException('Failed encode data to json');
+        }
+
+        $response->getBody()->write($json);
 
         return $response;
     }

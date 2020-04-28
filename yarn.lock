@@ -2,13 +2,33 @@
 # yarn lockfile v1
 
 
+"@composer-asset/maileryio--mailery-brand@file:./vendor/foxy/composer-asset/maileryio/mailery-brand":
+  version "1.0.0"
+  dependencies:
+    "@maileryio/mailery-brand-assets" "git+ssh://git@github.com:maileryio/mailery-brand-assets.git#master"
+
+"@composer-asset/maileryio--widget-link@file:./vendor/foxy/composer-asset/maileryio/widget-link":
+  version "1.0.0"
+  dependencies:
+    "@maileryio/widget-link-assets" "git+ssh://git@github.com:maileryio/widget-link-assets.git#master"
+
 "@maileryio/mailery-assets@git+ssh://git@github.com:maileryio/mailery-assets.git#master":
   version "1.0.2"
-  resolved "git+ssh://git@github.com:maileryio/mailery-assets.git#1cb124664a706c51912e57aeb84ffcc948600f8e"
+  resolved "git+ssh://git@github.com:maileryio/mailery-assets.git#8f6bce498db497446c905ba62f2af7b9438e0d32"
   dependencies:
     bootstrap-vue "^2.4.2"
     vue "^2.6.11"
     vuex "^3.1.2"
+
+"@maileryio/mailery-brand-assets@git+ssh://git@github.com:maileryio/mailery-brand-assets.git#master":
+  version "1.0.0"
+  resolved "git+ssh://git@github.com:maileryio/mailery-brand-assets.git#6af1b920de133adb32c652468f3dbf0139337a46"
+
+"@maileryio/widget-link-assets@git+ssh://git@github.com:maileryio/widget-link-assets.git#master":
+  version "1.0.6"
+  resolved "git+ssh://git@github.com:maileryio/widget-link-assets.git#48a69d81ed4578f131049c1344e4a61dd3cd5881"
+  dependencies:
+    vue "^2.6.11"
 
 "@nuxt/opencollective@^0.3.0":
   version "0.3.0"
@@ -27,9 +47,9 @@ ansi-styles@^3.2.1:
     color-convert "^1.9.0"
 
 bootstrap-vue@^2.4.2:
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/bootstrap-vue/-/bootstrap-vue-2.5.0.tgz#a8e48f9c0d15ebeb0f0b35cdc1ab26fd7a015307"
-  integrity sha512-LixZePxJqIkwsha2WAjAu7ZDH+oJ+JLxPGsl1SIbWebcEYZ+QtGx4JM2nR287t/0uWYGO+/oJ0KlaSO662VtLA==
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/bootstrap-vue/-/bootstrap-vue-2.13.0.tgz#a496e5b365400ce2640e0a89f3163c5f374d9c42"
+  integrity sha512-V/q2tgIY+tDxeBGOwqdPC4jk8CWmpwpSVY/1OVGxg4Jg1Jxcs6gQn7chhpI9KuBrO8diG/Nd6JRtnYwyE3b7Qw==
   dependencies:
     "@nuxt/opencollective" "^0.3.0"
     bootstrap ">=4.4.1 <5.0.0"
@@ -111,6 +131,6 @@ vue@^2.6.11:
   integrity sha512-VfPwgcGABbGAue9+sfrD4PuwFar7gPb1yl1UK1MwXoQPAw0BKSqWfoYCT/ThFrdEVWoI51dBuyCoiNU9bZDZxQ==
 
 vuex@^3.1.2:
-  version "3.1.2"
-  resolved "https://registry.yarnpkg.com/vuex/-/vuex-3.1.2.tgz#a2863f4005aa73f2587e55c3fadf3f01f69c7d4d"
-  integrity sha512-ha3jNLJqNhhrAemDXcmMJMKf1Zu4sybMPr9KxJIuOpVcsDQlTBYLLladav2U+g1AvdYDG5Gs0xBTb0M5pXXYFQ==
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/vuex/-/vuex-3.3.0.tgz#665b4630ea1347317139fcc5cb495aab3ec5e513"
+  integrity sha512-1MfcBt+YFd20DPwKe0ThhYm1UEXZya4gVKUvCy7AtS11YAOUR+9a6u4fsv1Rr6ePZCDNxW/M1zuIaswp6nNv8Q==

@@ -17,14 +17,14 @@ use Yiisoft\View\WebView as YiiWebView;
 class WebView extends YiiWebView
 {
     /**
-     * @var string
+     * @var string|null
      */
-    private string $language;
+    private ?string $language;
 
     /**
-     * @var string
+     * @var string|null
      */
-    private string $encoding;
+    private ?string $encoding;
 
     /**
      * @param string $language
@@ -36,7 +36,7 @@ class WebView extends YiiWebView
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getLanguage(): ?string
     {
@@ -52,7 +52,7 @@ class WebView extends YiiWebView
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getEncoding(): ?string
     {
