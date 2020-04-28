@@ -58,5 +58,4 @@ class WebView extends YiiWebView
     {
         return $this->encoding;
     }
-
 }

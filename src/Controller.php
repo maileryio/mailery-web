@@ -68,6 +68,7 @@ abstract class Controller implements ViewContextInterface
     public function getId(): string
     {
         $shortName = (new \ReflectionClass($this))->getShortName();
+
         return strtolower(preg_replace('/Controller$/', '', $shortName));
     }
 

@@ -22,6 +22,9 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\UploadedFileFactoryInterface;
 use Psr\Http\Message\UriFactoryInterface;
+use Psr\Log\LoggerInterface;
+use Yiisoft\Assets\AssetConverterInterface;
+use Yiisoft\Assets\AssetManager;
 use Yiisoft\Assets\AssetPublisher;
 use Yiisoft\Assets\AssetPublisherInterface;
 use Yiisoft\Router\FastRoute\UrlGenerator;
@@ -32,9 +35,6 @@ use Yiisoft\Router\UrlMatcherInterface;
 use Yiisoft\View\WebView;
 use Yiisoft\Yii\Web\MiddlewareDispatcher;
 use Yiisoft\Yii\Web\ServerRequestFactory;
-use Psr\Log\LoggerInterface;
-use Yiisoft\Assets\AssetConverterInterface;
-use Yiisoft\Assets\AssetManager;
 
 return [
     // PSR-17 factories:
@@ -58,7 +58,7 @@ return [
     // View:
     WebView::class => new ViewFactory(),
 
-    AssetPublisherInterface::class => function (ContainerInterface $container) use($params) {
+    AssetPublisherInterface::class => function (ContainerInterface $container) use ($params) {
         $publisher = $container->get(AssetPublisher::class);
         $publisher->setForceCopy($params['assetManager']['publisher']['forceCopy']);
         $publisher->setAppendTimestamp($params['assetManager']['publisher']['appendTimestamp']);
@@ -66,7 +66,7 @@ return [
         return $publisher;
     },
 
-    AssetManager::class => function (ContainerInterface $container) use($params) {
+    AssetManager::class => function (ContainerInterface $container) use ($params) {
         $assetManager = new AssetManager($container->get(LoggerInterface::class));
 
         $assetManager->setBundles($params['assetManager']['bundles']);

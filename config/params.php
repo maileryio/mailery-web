@@ -11,9 +11,9 @@ declare(strict_types=1);
  */
 
 use Mailery\Web\Assets\AppAssetBundle;
+use Mailery\Web\Assets\BootstrapVueAssetBundle;
 use Mailery\Web\Assets\VueAssetBundle;
 use Mailery\Web\Assets\VuexAssetBundle;
-use Mailery\Web\Assets\BootstrapVueAssetBundle;
 
 return [
     'assetManager' => [

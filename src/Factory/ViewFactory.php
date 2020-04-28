@@ -22,11 +22,11 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\LoggerInterface;
 use Yiisoft\Aliases\Aliases;
 use Yiisoft\Assets\AssetManager;
+use Yiisoft\I18n\TranslatorInterface;
 use Yiisoft\Router\UrlGeneratorInterface;
 use Yiisoft\View\Theme;
 use Yiisoft\Widget\WidgetFactory;
 use Yiisoft\Yii\Web\User\User;
-use Yiisoft\I18n\TranslatorInterface;
 
 class ViewFactory
 {

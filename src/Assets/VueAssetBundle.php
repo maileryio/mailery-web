@@ -1,12 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
+/**
+ * Mailery package for provide web components
+ * @link      https://github.com/maileryio/mailery-web
+ * @package   Mailery\Web
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2020, Mailery (https://mailery.io/)
+ */
+
 namespace Mailery\Web\Assets;
 
 use Yiisoft\Assets\AssetBundle;
 
 class VueAssetBundle extends AssetBundle
 {
-
     /**
      * {@inheritdoc}
      */
@@ -28,5 +37,4 @@ class VueAssetBundle extends AssetBundle
     public array $js = [
         'vue.min.js',
     ];
-
 }
