@@ -65,6 +65,9 @@
         }
     },
     "config": {
+        "extra": {
+            "foxy": true
+        },
         "sort-packages": true
     }
 }
