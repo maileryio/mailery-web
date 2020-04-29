@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Mailery\Web\Factory;
 
-use Mailery\Brand\Contract\BrandLocatorInterface;
+use Mailery\Brand\Service\BrandLocatorInterface;
 use Mailery\Menu\Navbar\NavbarMenuInterface;
 use Mailery\Menu\Sidebar\SidebarMenuInterface;
 use Mailery\Web\View\WebView;
