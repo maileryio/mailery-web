@@ -66,6 +66,10 @@
         }
     },
     "config": {
+        "extra": {
+            "foxy": true,
+            "manager": "yarn"
+        },
         "sort-packages": true
     }
 }
