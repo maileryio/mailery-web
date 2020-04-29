@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Mailery\Web\Factory;
 
-use Mailery\Brand\Service\BrandLocator;
+use Mailery\Brand\Contract\BrandLocatorInterface;
 use Mailery\Menu\Navbar\NavbarMenuInterface;
 use Mailery\Menu\Sidebar\SidebarMenuInterface;
 use Mailery\Web\View\WebView;
@@ -54,7 +54,7 @@ class ViewFactory
             'urlGenerator' => $container->get(UrlGeneratorInterface::class),
             'navbarMenu' => $container->get(NavbarMenuInterface::class),
             'sidebarMenu' => $container->get(SidebarMenuInterface::class),
-            'brandLocator' => $container->get(BrandLocator::class),
+            'brandLocator' => $container->get(BrandLocatorInterface::class),
         ]);
 
         $webView->setTitle('Default');

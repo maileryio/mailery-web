@@ -164,8 +164,8 @@ abstract class Controller implements ViewContextInterface
 
     /**
      * @param array $data
-     * @return ResponseInterface
      * @throws \RuntimeException
+     * @return ResponseInterface
      */
     protected function asJson(array $data = []): ResponseInterface
     {

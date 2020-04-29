@@ -1,6 +1,6 @@
 {
     "license": "BSD-3-Clause",
     "dependencies": {
-        "@maileryio/mailery-assets": "git+ssh://git@github.com:maileryio/mailery-assets.git#master"
+        "@maileryio/mailery-assets": "git+ssh://git@github.com/maileryio/mailery-assets.git#master"
     }
 }
