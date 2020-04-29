@@ -10,6 +10,7 @@ declare(strict_types=1);
  * @copyright Copyright (c) 2020, Mailery (https://mailery.io/)
  */
 
+use Mailery\Menu\MenuItem;
 use Mailery\Web\Assets\AppAssetBundle;
 use Mailery\Web\Assets\BootstrapVueAssetBundle;
 use Mailery\Web\Assets\VueAssetBundle;
@@ -38,5 +39,14 @@ return [
 
     'dispatcher' => [
         'middlewares' => [],
+    ],
+
+    'menu' => [
+        'navbar' => [
+            'items' => [
+                'system' => (new MenuItem())
+                    ->withLabel('System'),
+            ],
+        ],
     ],
 ];
