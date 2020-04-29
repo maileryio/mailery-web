@@ -35,7 +35,6 @@
         "yiisoft/yii-web": "^3.0@dev"
     },
     "require-dev": {
-        "foxy/foxy": "^1.0",
         "friendsofphp/php-cs-fixer": "^2.16",
         "phan/phan": "^2.4",
         "phpunit/phpunit": "^9.0",
@@ -66,10 +65,6 @@
         }
     },
     "config": {
-        "extra": {
-            "foxy": true,
-            "manager": "yarn"
-        },
         "sort-packages": true
     }
 }
