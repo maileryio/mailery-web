@@ -18,6 +18,7 @@
     "prefer-stable": true,
     "require": {
         "php": "^7.4",
+        "foxy/foxy": "^1.0",
         "maileryio/mailery-brand": "dev-master",
         "maileryio/mailery-menu-navbar": "dev-master",
         "maileryio/mailery-menu-sidebar": "dev-master",
