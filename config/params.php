@@ -45,7 +45,8 @@ return [
         'navbar' => [
             'items' => [
                 'system' => (new MenuItem())
-                    ->withLabel('System'),
+                    ->withLabel('System')
+                    ->withOrder(100),
             ],
         ],
     ],
