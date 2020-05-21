@@ -22,12 +22,12 @@ class EntityViewLink extends Widget
     /**
      * @var array
      */
-    private array $params = [];
+    private array $options = [];
 
     /**
      * @var array
      */
-    private array $options = [];
+    private array $routeParams = [];
 
     /**
      * @var UrlGeneratorInterface
@@ -65,23 +65,23 @@ class EntityViewLink extends Widget
     }
 
     /**
-     * @param array $params
-     * @return self
-     */
-    public function params(array $params): self
-    {
-        $this->params = $params;
-
-        return $this;
-    }
-
-    /**
      * @param array $options
      * @return self
      */
     public function options(array $options): self
     {
         $this->options = $options;
+
+        return $this;
+    }
+
+    /**
+     * @param array $routeParams
+     * @return self
+     */
+    public function routeParams(array $routeParams): self
+    {
+        $this->routeParams = $routeParams;
 
         return $this;
     }
@@ -94,7 +94,7 @@ class EntityViewLink extends Widget
         $entity = $this->entity;
 
         if ($entity instanceof RoutableEntityInterface && ($routeName = $entity->getViewRouteName()) !== null) {
-            $routeParams = array_merge($entity->getViewRouteParams(), $this->params);
+            $routeParams = array_merge($entity->getViewRouteParams(), $this->routeParams);
 
             return Html::a(
                 $this->label,
