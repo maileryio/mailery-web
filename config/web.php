@@ -69,7 +69,6 @@ return [
     AssetManager::class => function (ContainerInterface $container) use ($params) {
         $assetManager = new AssetManager($container->get(LoggerInterface::class));
 
-        $assetManager->setBundles($params['assetManager']['bundles']);
         $assetManager->setConverter($container->get(AssetConverterInterface::class));
         $assetManager->setPublisher($container->get(AssetPublisherInterface::class));
 

@@ -11,22 +11,9 @@ declare(strict_types=1);
  */
 
 use Mailery\Menu\MenuItem;
-use Mailery\Web\Assets\AppAssetBundle;
-use Mailery\Web\Assets\BootstrapVueAssetBundle;
-use Mailery\Web\Assets\VueAssetBundle;
-use Mailery\Web\Assets\VuexAssetBundle;
 
 return [
     'assetManager' => [
-        'bundles' => [
-            AppAssetBundle::class => [
-                'depends' => [
-                    VueAssetBundle::class,
-                    VuexAssetBundle::class,
-                    BootstrapVueAssetBundle::class,
-                ],
-            ],
-        ],
         'publisher' => [
             'forceCopy' => false,
             'appendTimestamp' => true,
