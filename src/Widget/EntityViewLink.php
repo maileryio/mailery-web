@@ -6,6 +6,7 @@ use Yiisoft\Widget\Widget;
 use Mailery\Common\Entity\RoutableEntityInterface;
 use Yiisoft\Router\UrlGeneratorInterface;
 use Yiisoft\Html\Html;
+use Cycle\ORM\ORMInterface;
 
 class EntityViewLink extends Widget
 {
@@ -20,6 +21,11 @@ class EntityViewLink extends Widget
     private string $label;
 
     /**
+     * @var bool
+     */
+    private bool $reload = false;
+
+    /**
      * @var array
      */
     private array $options = [];
@@ -30,15 +36,22 @@ class EntityViewLink extends Widget
     private array $routeParams = [];
 
     /**
+     * @var ORMInterface
+     */
+    private ORMInterface $orm;
+
+    /**
      * @var UrlGeneratorInterface
      */
     private UrlGeneratorInterface $urlGenerator;
 
     /**
+     * @param ORMInterface $orm
      * @param UrlGeneratorInterface $urlGenerator
      */
-    public function __construct(UrlGeneratorInterface $urlGenerator)
+    public function __construct(ORMInterface $orm, UrlGeneratorInterface $urlGenerator)
     {
+        $this->orm = $orm;
         $this->urlGenerator = $urlGenerator;
     }
 
@@ -60,6 +73,17 @@ class EntityViewLink extends Widget
     public function label(string $label): self
     {
         $this->label = $label;
+
+        return $this;
+    }
+
+    /**
+     * @param bool $reload
+     * @return self
+     */
+    public function reload(bool $reload): self
+    {
+        $this->reload = $reload;
 
         return $this;
     }
@@ -91,8 +115,7 @@ class EntityViewLink extends Widget
      */
     protected function run(): string
     {
-        $entity = $this->entity;
-
+        $entity = $this->getEntity();
         if ($entity instanceof RoutableEntityInterface && ($routeName = $entity->getViewRouteName()) !== null) {
             $routeParams = array_merge($entity->getViewRouteParams(), $this->routeParams);
 
@@ -103,5 +126,17 @@ class EntityViewLink extends Widget
         }
 
         return $this->label;
+    }
+
+    /**
+     * @return object|null
+     */
+    private function getEntity(): ?object
+    {
+        if ($this->reload && method_exists($this->entity, 'getId') && !empty($this->entity->getId())) {
+            $repo = $this->orm->getRepository(get_class($this->entity));
+            return $repo->findByPK($this->entity->getId());
+        }
+        return $this->entity;
     }
 }
