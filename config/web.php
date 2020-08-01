@@ -28,7 +28,7 @@ use Yiisoft\Assets\AssetManager;
 use Yiisoft\Assets\AssetPublisher;
 use Yiisoft\Assets\AssetPublisherInterface;
 use Yiisoft\Router\FastRoute\UrlGenerator;
-use Yiisoft\Router\GroupFactory;
+use Yiisoft\Router\Group;
 use Yiisoft\Router\RouteCollectorInterface;
 use Yiisoft\Router\UrlGeneratorInterface;
 use Yiisoft\Router\UrlMatcherInterface;
@@ -49,7 +49,7 @@ return [
     },
 
     // Router:
-    RouteCollectorInterface::class => new GroupFactory(),
+    RouteCollectorInterface::class => Group::create(),
     UrlMatcherInterface::class => new AppRouterFactory($params['router']['routes']),
     UrlGeneratorInterface::class => UrlGenerator::class,
 
