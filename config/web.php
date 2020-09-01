@@ -27,6 +27,10 @@ use Yiisoft\Assets\AssetConverterInterface;
 use Yiisoft\Assets\AssetManager;
 use Yiisoft\Assets\AssetPublisher;
 use Yiisoft\Assets\AssetPublisherInterface;
+use Yiisoft\DataResponse\DataResponseFactory;
+use Yiisoft\DataResponse\DataResponseFactoryInterface;
+use Yiisoft\DataResponse\DataResponseFormatterInterface;
+use Yiisoft\DataResponse\Formatter\HtmlDataResponseFormatter;
 use Yiisoft\Router\FastRoute\UrlGenerator;
 use Yiisoft\Router\Group;
 use Yiisoft\Router\RouteCollectorInterface;
@@ -35,6 +39,7 @@ use Yiisoft\Router\UrlMatcherInterface;
 use Yiisoft\View\WebView;
 use Yiisoft\Yii\Web\MiddlewareDispatcher;
 use Yiisoft\Yii\Web\ServerRequestFactory;
+use Mailery\Web\ViewRenderer;
 
 return [
     // PSR-17 factories:
@@ -47,6 +52,8 @@ return [
     ServerRequestInterface::class => function (ContainerInterface $container) {
         return $container->get(ServerRequestFactory::class)->createFromGlobals();
     },
+    DataResponseFormatterInterface::class => HtmlDataResponseFormatter::class,
+    DataResponseFactoryInterface::class => DataResponseFactory::class,
 
     // Router:
     RouteCollectorInterface::class => Group::create(),
@@ -74,4 +81,10 @@ return [
 
         return $assetManager;
     },
+
+    ViewRenderer::class => [
+        '__construct()' => [
+            'layout' => '@views/layout/main',
+        ],
+    ],
 ];
