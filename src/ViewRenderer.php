@@ -279,7 +279,7 @@ final class ViewRenderer implements ViewContextInterface
         $inflector = new Inflector();
         $name = str_replace('\\', '/', $m[1]);
 
-        return $this->name = $inflector->camel2id($name);
+        return $this->name = $inflector->pascalCaseToId($name);
     }
 
     /**
