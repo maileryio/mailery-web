@@ -10,7 +10,6 @@ declare(strict_types=1);
  * @copyright Copyright (c) 2020, Mailery (https://mailery.io/)
  */
 
-use Mailery\Web\Factory\AppRouterFactory;
 use Mailery\Web\Factory\MiddlewareDispatcherFactory;
 use Mailery\Web\Factory\ViewFactory;
 use Nyholm\Psr7\Factory\Psr17Factory;
@@ -32,8 +31,11 @@ use Yiisoft\DataResponse\DataResponseFactoryInterface;
 use Yiisoft\DataResponse\DataResponseFormatterInterface;
 use Yiisoft\DataResponse\Formatter\HtmlDataResponseFormatter;
 use Yiisoft\Router\FastRoute\UrlGenerator;
+use Yiisoft\Router\FastRoute\UrlMatcher;
 use Yiisoft\Router\Group;
+use Yiisoft\Router\RouteCollection;
 use Yiisoft\Router\RouteCollectorInterface;
+use Yiisoft\Router\RouteCollectionInterface;
 use Yiisoft\Router\UrlGeneratorInterface;
 use Yiisoft\Router\UrlMatcherInterface;
 use Yiisoft\View\WebView;
@@ -57,7 +59,8 @@ return [
 
     // Router:
     RouteCollectorInterface::class => Group::create(),
-    UrlMatcherInterface::class => new AppRouterFactory($params['router']['routes']),
+    RouteCollectionInterface::class => RouteCollection::class,
+    UrlMatcherInterface::class => UrlMatcher::class,
     UrlGeneratorInterface::class => UrlGenerator::class,
 
     MiddlewareDispatcher::class => new MiddlewareDispatcherFactory($params['dispatcher']['middlewares']),
