@@ -30,6 +30,8 @@ use Yiisoft\DataResponse\DataResponseFactory;
 use Yiisoft\DataResponse\DataResponseFactoryInterface;
 use Yiisoft\DataResponse\DataResponseFormatterInterface;
 use Yiisoft\DataResponse\Formatter\HtmlDataResponseFormatter;
+use Yiisoft\Router\Dispatcher;
+use Yiisoft\Router\DispatcherInterface;
 use Yiisoft\Router\FastRoute\UrlGenerator;
 use Yiisoft\Router\FastRoute\UrlMatcher;
 use Yiisoft\Router\Group;
@@ -58,6 +60,7 @@ return [
     DataResponseFactoryInterface::class => DataResponseFactory::class,
 
     // Router:
+    DispatcherInterface::class => Dispatcher::class,
     RouteCollectorInterface::class => Group::create(),
     RouteCollectionInterface::class => RouteCollection::class,
     UrlMatcherInterface::class => UrlMatcher::class,
