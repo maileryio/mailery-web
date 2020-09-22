@@ -8,7 +8,7 @@ use Yiisoft\Aliases\Aliases;
 use Yiisoft\View\ViewContextInterface;
 use Yiisoft\View\WebView;
 use Yiisoft\Strings\Inflector;
-use Yiisoft\Yii\Web\Middleware\Csrf;
+use Yiisoft\Csrf\CsrfMiddleware;
 use Yiisoft\Router\UrlMatcherInterface;
 use Yiisoft\Yii\Web\User\User;
 
@@ -190,7 +190,7 @@ final class ViewRenderer implements ViewContextInterface
      * @param string $requestAttribute
      * @return self
      */
-    public function withCsrf(string $requestAttribute = Csrf::REQUEST_NAME): self
+    public function withCsrf(string $requestAttribute = CsrfMiddleware::PARAMETER_NAME): self
     {
         $new = clone $this;
         $new->csrfTokenRequestAttribute = $requestAttribute;
