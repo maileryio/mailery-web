@@ -18,7 +18,7 @@ use Yiisoft\Yii\Web\ErrorHandler\ErrorCatcher;
 use Yiisoft\Csrf\CsrfMiddleware;
 use Yiisoft\Yii\Web\Middleware\SubFolder;
 use Yiisoft\Yii\Web\MiddlewareDispatcher;
-use Yiisoft\Yii\Web\Session\SessionMiddleware;
+use Yiisoft\Session\SessionMiddleware;
 
 class MiddlewareDispatcherFactory
 {
