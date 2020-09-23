@@ -40,10 +40,9 @@ use Yiisoft\Router\RouteCollectorInterface;
 use Yiisoft\Router\RouteCollectionInterface;
 use Yiisoft\Router\UrlGeneratorInterface;
 use Yiisoft\Router\UrlMatcherInterface;
-use Yiisoft\View\WebView;
 use Yiisoft\Yii\Web\MiddlewareDispatcher;
 use Yiisoft\Yii\Web\ServerRequestFactory;
-use Mailery\Web\ViewRenderer;
+use Yiisoft\Yii\View\ViewRenderer;
 
 return [
     // PSR-17 factories:
@@ -67,9 +66,6 @@ return [
     UrlGeneratorInterface::class => UrlGenerator::class,
 
     MiddlewareDispatcher::class => new MiddlewareDispatcherFactory($params['dispatcher']['middlewares']),
-
-    // View:
-    WebView::class => new ViewFactory(),
 
     AssetPublisherInterface::class => function (ContainerInterface $container) use ($params) {
         $publisher = $container->get(AssetPublisher::class);
