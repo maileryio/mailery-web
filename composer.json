@@ -33,7 +33,7 @@
         "yiisoft/http": "^1.0@dev",
         "yiisoft/router": "^3.0@dev",
         "yiisoft/router-fastroute": "^3.0@dev",
-        "yiisoft/session": "^3.0@dev",
+        "yiisoft/session": "^1.0",
         "yiisoft/view": "^3.0@dev",
         "yiisoft/widget": "^3.0@dev",
         "yiisoft/yii-web": "^3.0@dev",
