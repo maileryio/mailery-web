@@ -13,13 +13,6 @@ declare(strict_types=1);
 use Mailery\Menu\MenuItem;
 
 return [
-    'assetManager' => [
-        'publisher' => [
-            'forceCopy' => false,
-            'appendTimestamp' => true,
-        ],
-    ],
-
     'dispatcher' => [
         'middlewares' => [],
     ],
