@@ -10,19 +10,18 @@ declare(strict_types=1);
  * @copyright Copyright (c) 2020, Mailery (https://mailery.io/)
  */
 
-use Mailery\Menu\MenuItem;
-
 return [
     'dispatcher' => [
         'middlewares' => [],
     ],
 
-    'menu' => [
-        'navbar' => [
-            'items' => [
-                'system' => (new MenuItem())
-                    ->withLabel('System')
-                    ->withOrder(100),
+    'maileryio/mailery-menu-navbar' => [
+        'items' => [
+            'system' => [
+                'label' => static function () {
+                    return 'System';
+                },
+                'order' => 100,
             ],
         ],
     ],
