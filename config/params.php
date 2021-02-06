@@ -21,7 +21,6 @@ return [
                 'label' => static function () {
                     return 'System';
                 },
-                'order' => 100,
             ],
         ],
     ],
