@@ -35,6 +35,7 @@
         "yiisoft/session": "^1.0",
         "yiisoft/view": "^3.0@dev",
         "yiisoft/widget": "^3.0@dev",
+        "yiisoft/yii-bootstrap5": "^3.0@dev",
         "yiisoft/yii-web": "^3.0@dev",
         "yiisoft/yii-view": "^3.0@dev"
     },

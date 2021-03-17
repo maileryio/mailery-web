@@ -3,7 +3,7 @@
 namespace Mailery\Web\Widget;
 
 use Yiisoft\Session\Flash\FlashInterface;
-use Yiisoft\Yii\Bootstrap4\Alert;
+use Yiisoft\Yii\Bootstrap5\Alert;
 use Yiisoft\Widget\Widget;
 
 final class FlashMessage extends Widget
