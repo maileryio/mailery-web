@@ -37,7 +37,7 @@ final class FlashMessage extends Widget
                         'encode' => false,
                     ])
                     ->body($message['body'])
-                    ->closeButtonEnabled(false)
+                    ->withoutCloseButton(false)
                 ;
             }
         }
