@@ -22,22 +22,7 @@
         "maileryio/mailery-brand": "dev-master",
         "maileryio/mailery-menu-navbar": "dev-master",
         "maileryio/mailery-menu-sidebar": "dev-master",
-        "psr/http-factory": "^1.0",
-        "yiisoft/aliases": "^2.0",
-        "yiisoft/assets": "^1.0",
-        "yiisoft/csrf": "^1.0",
-        "yiisoft/data-response": "^1.0",
-        "yiisoft/di": "^3.0@dev",
-        "yiisoft/factory": "^3.0@dev",
-        "yiisoft/http": "^1.1",
-        "yiisoft/router": "^3.0@dev",
-        "yiisoft/router-fastroute": "^3.0@dev",
-        "yiisoft/session": "^1.0",
-        "yiisoft/view": "^2.0",
-        "yiisoft/widget": "^3.0@dev",
-        "yiisoft/yii-bootstrap5": "^3.0@dev",
-        "yiisoft/yii-web": "^3.0@dev",
-        "yiisoft/yii-view": "^2.0"
+        "psr/http-factory": "^1.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.16",
