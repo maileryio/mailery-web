@@ -11,10 +11,6 @@ declare(strict_types=1);
  */
 
 return [
-    'dispatcher' => [
-        'middlewares' => [],
-    ],
-
     'maileryio/mailery-menu-navbar' => [
         'items' => [
             'system' => [
