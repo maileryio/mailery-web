@@ -24,7 +24,7 @@ class BootstrapVueAssetBundle extends AssetBundle
     /**
      * {@inheritdoc}
      */
-    public ?string $baseUrl = '@web';
+    public ?string $baseUrl = '@assetsUrl';
 
     /**
      * {@inheritdoc}
