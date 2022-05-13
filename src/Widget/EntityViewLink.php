@@ -7,7 +7,6 @@ use Mailery\Common\Entity\RoutableEntityInterface;
 use Yiisoft\Router\UrlGeneratorInterface;
 use Yiisoft\Html\Html;
 use Cycle\ORM\ORMInterface;
-use Cycle\ORM\Exception\SchemaException;
 
 class EntityViewLink extends Widget
 {
