@@ -4,7 +4,7 @@ namespace Mailery\Web\Widget;
 
 use Yiisoft\Widget\Widget;
 
-class SizeUnitsFormat extends Widget
+class ByteUnitsFormat extends Widget
 {
 
     /**
@@ -41,19 +41,7 @@ class SizeUnitsFormat extends Widget
      */
     public function run(): string
     {
-        if ($this->bytes >= 1073741824) {
-            return number_format($this->bytes / 1073741824, 2) . ' GB';
-        } elseif ($this->bytes >= 1048576) {
-            return number_format($this->bytes / 1048576, 2) . ' MB';
-        } elseif ($this->bytes >= 1024) {
-            return number_format($this->bytes / 1024, 2) . ' KB';
-        } elseif ($this->bytes > 1) {
-            return $this->bytes . ' bytes';
-        } elseif ($this->bytes == 1) {
-            return $this->bytes . ' byte';
-        } else {
-            return '0 bytes';
-        }
+        return \ByteUnits\bytes($this->bytes)->format(null, ' ');
     }
 
 }
