@@ -36,24 +36,13 @@ class EntityViewLink extends Widget
     private array $routeParams = [];
 
     /**
-     * @var ORMInterface
-     */
-    private ORMInterface $orm;
-
-    /**
-     * @var UrlGeneratorInterface
-     */
-    private UrlGeneratorInterface $urlGenerator;
-
-    /**
      * @param ORMInterface $orm
      * @param UrlGeneratorInterface $urlGenerator
      */
-    public function __construct(ORMInterface $orm, UrlGeneratorInterface $urlGenerator)
-    {
-        $this->orm = $orm;
-        $this->urlGenerator = $urlGenerator;
-    }
+    public function __construct(
+        private ORMInterface $orm,
+        private UrlGeneratorInterface $urlGenerator
+    ) {}
 
     /**
      * @param object $entity
