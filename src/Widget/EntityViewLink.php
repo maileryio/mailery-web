@@ -16,9 +16,9 @@ class EntityViewLink extends Widget
     private object $entity;
 
     /**
-     * @var string
+     * @var string|\Stringable
      */
-    private string $label;
+    private string|\Stringable $label;
 
     /**
      * @var bool
@@ -56,10 +56,10 @@ class EntityViewLink extends Widget
     }
 
     /**
-     * @param string $label
+     * @param string|\Stringable $label
      * @return self
      */
-    public function label(string $label): self
+    public function label(string|\Stringable $label): self
     {
         $this->label = $label;
 
